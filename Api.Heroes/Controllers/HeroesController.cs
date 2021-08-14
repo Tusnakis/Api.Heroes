@@ -9,11 +9,11 @@ namespace Api.Heroes.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HeroeController : ControllerBase
+    public class HeroesController : ControllerBase
     {
         private readonly TESTContext _context;
 
-        public HeroeController(TESTContext context)
+        public HeroesController(TESTContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Api.Heroes.Controllers
         /// Get all heroes
         /// </summary>
         [HttpGet]
-        public ActionResult<List<Heroe>> Get()
+        public ActionResult<List<Heroe>> GetHeroes()
         {
             var heroes = _context.Heroes.ToList();
             return heroes;
