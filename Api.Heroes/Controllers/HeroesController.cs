@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Api.Heroes.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class HeroesController : ControllerBase
     {
         private readonly TESTContext _context;
@@ -23,10 +23,18 @@ namespace Api.Heroes.Controllers
         /// Get all heroes
         /// </summary>
         [HttpGet]
-        public ActionResult<List<Heroe>> GetHeroes()
+        public ActionResult<List<Heroe>> GetHeroes(string name = null)
         {
-            var heroes = _context.Heroes.ToList();
-            return heroes;
+            if(name != null)
+            {
+                var heroes = _context.Heroes.Where(p => p.Name == name).ToList();
+                return heroes;
+            }
+            else
+            {
+                var heroes = _context.Heroes.ToList();
+                return heroes;
+            }
         }
 
         /// <summary>
